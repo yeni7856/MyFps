@@ -12,6 +12,7 @@ namespace MyFps
         public GameObject ActionUI;
         [SerializeField] private TextMeshProUGUI actionTextUI;
         private string actionText = "Open The Door";
+        public GameObject extraCross;
 
         private float theDistance;
 
@@ -23,7 +24,7 @@ namespace MyFps
         private void Start()
         {
             doorAnim = GetComponent<Animator>();
-            colliderDoor = GetComponent<Collider>();
+            colliderDoor = GetComponent<BoxCollider>();
         }
         private void Update()
         {
@@ -35,8 +36,7 @@ namespace MyFps
             if(theDistance <= 2f)
             {
                 //PlayerCasting.distanceFromTarget
-                ActionUI.SetActive(true);
-                actionTextUI.text = actionText;
+                ShowActionUI();
 
                 if (Input.GetButton("Action"))
                 {
@@ -57,10 +57,18 @@ namespace MyFps
         {
             HideActionUI();
         }
+
+        void ShowActionUI()
+        {
+            ActionUI.SetActive(true);
+            actionTextUI.text = actionText;
+            extraCross.SetActive(true);
+        }
         void HideActionUI()
         {
             ActionUI.SetActive(false);
             actionTextUI.text = "";
+            extraCross.SetActive(false);
         }
     }
 
