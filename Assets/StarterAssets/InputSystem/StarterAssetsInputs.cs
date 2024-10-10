@@ -20,8 +20,20 @@ namespace StarterAssets
 		public bool cursorLocked = true;
 		public bool cursorInputForLook = true;
 
+		//Add by KYE 24-10-10
+        private void OnEnable()
+        {
+            move = Vector2.zero; 
+			look = Vector2.zero;
+            jump = false;
+            sprint = false; 
+			/*analogMovement = false; 
+			cursorLocked = false;
+			cursorInputForLook = false;*/
+        }
+
 #if ENABLE_INPUT_SYSTEM
-		public void OnMove(InputValue value)
+        public void OnMove(InputValue value)
 		{
 			MoveInput(value.Get<Vector2>());
 		}
