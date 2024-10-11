@@ -32,6 +32,7 @@ namespace MySample
             Vector3 dir = new Vector3 (moveX, 0f, moveY);
             transform.Translate(dir.normalized * Time.deltaTime * moveSpeed, Space.World);
             //animationMove();
+            AniamtionBlendTest();
         }
         private void AniamtionBlendTest()
         {
