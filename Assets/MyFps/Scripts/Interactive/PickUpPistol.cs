@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 namespace MyFps
@@ -11,12 +8,14 @@ namespace MyFps
         public GameObject realPistol;
         public GameObject arrow;
 
+        public GameObject enemyTrigger;
+
         protected override void DoAction()
         {
             realPistol.SetActive(true);
             arrow.SetActive(false);
+            enemyTrigger.SetActive(true);
             Destroy(gameObject);
         }
-
     }
 }
