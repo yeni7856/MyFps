@@ -4,18 +4,34 @@ using UnityEngine;
 
 namespace MyFps
 {
+    //로봇상태
+    public enum RobotState
+    {
+        R_Idle,
+        R_Walk,
+        R_Attack,
+        R_Death
+    }
+    //로봇 Enemy 관리 클래스
     public class RobotController : MonoBehaviour
     {
-        // Start is called before the first frame update
-        void Start()
-        {
+        private Animator Animator;
 
+        //로봇상태
+        private RobotState currentState;
+
+        private void Start()
+        {
+            Animator = GetComponent<Animator>();
+
+            SetState(RobotState.R_Idle);
         }
 
-        // Update is called once per frame
-        void Update()
+        //로봇의 상태 변경
+        void SetState(RobotState newstate)
         {
-
+            currentState = newstate;
+            Animator.SetInteger("RobotState", (int)newstate);
         }
     }
 }
