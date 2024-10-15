@@ -30,6 +30,9 @@ namespace MyFps
             yield return new WaitForSeconds(1f);
             //Enemy 등장 사운드
             jumpScare.Play();
+
+           //트리거 킬
+            Destroy(this.gameObject);
         }
     }
 }

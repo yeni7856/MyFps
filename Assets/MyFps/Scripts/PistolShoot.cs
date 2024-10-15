@@ -42,7 +42,7 @@ namespace MyFps
             bool isHit = Physics.Raycast(firPoint.position, firPoint.TransformDirection(Vector3.forward), out hit, maxDistance);
             if (isHit)
             {
-                Gizmos.DrawLine(firPoint.position, firPoint.forward * hit.distance);
+                //Gizmos.DrawLine(firPoint.position, firPoint.forward * hit.distance);
                 Debug.Log("적에게 대미지를준다");
             }
 
