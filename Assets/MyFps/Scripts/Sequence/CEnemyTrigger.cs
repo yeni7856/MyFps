@@ -16,7 +16,7 @@ namespace MyFps
         private void OnTriggerEnter(Collider other)
         {
             StartCoroutine(PlaySequence());
-            Debug.Log("Triggered by: " + other.gameObject.name);
+            //Debug.Log("Triggered by: " + other.gameObject.name);
         }
         IEnumerator PlaySequence()
         {

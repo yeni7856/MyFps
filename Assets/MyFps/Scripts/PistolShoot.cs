@@ -11,7 +11,7 @@ namespace MyFps
         public ParticleSystem muzzle;
         public AudioSource pistolShoot;
 
-        //
+        //public Transform camera;
         public Transform firPoint;
 
         //연사 딜레이
@@ -36,7 +36,7 @@ namespace MyFps
         IEnumerator Shoot()
         {
             isFire = true;
-
+            //내앞에 100안에 적이 있으면 적에게 데미지를 준다
             float maxDistance = 100f;
             RaycastHit hit;
             bool isHit = Physics.Raycast(firPoint.position, firPoint.TransformDirection(Vector3.forward), out hit, maxDistance);
