@@ -13,6 +13,8 @@ namespace MyFps
 
         //public Transform camera;
         public Transform firPoint;
+        //공격
+        [SerializeField] private float attackDmg = 5f;
 
         //연사 딜레이
         [SerializeField] private float fireDelay = 0.5f;
@@ -43,7 +45,14 @@ namespace MyFps
             if (isHit)
             {
                 //Gizmos.DrawLine(firPoint.position, firPoint.forward * hit.distance);
-                Debug.Log("적에게 대미지를준다");
+                //적에게 데미지를 준다
+                Debug.Log($"{hit.transform.name}적에게 대미지를준다");
+                RobotController robot = hit.transform.GetComponent<RobotController>();
+               
+                if(robot != null)
+                {
+                    robot.TakeDamage(attackDmg);
+                }
             }
 
             m_Animator.SetTrigger("Fire");

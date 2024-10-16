@@ -21,6 +21,9 @@ namespace MyFps
 
         void Start ()
         {
+            //마우스 커서 상태 설정
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = false;
             StartCoroutine(PlaySequence());
         }
 
