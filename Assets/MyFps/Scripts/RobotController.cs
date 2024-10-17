@@ -13,7 +13,7 @@ namespace MyFps
         R_Death
     }
     //로봇 Enemy 관리 클래스
-    public class RobotController : MonoBehaviour
+    public class RobotController : MonoBehaviour, IDamageable
     {
         #region Variables
         public GameObject thePlayer;
@@ -45,6 +45,7 @@ namespace MyFps
             Animator = GetComponent<Animator>();
 
             //초기화
+            isDeath = false;
             currentHp = maxHp;
             count = attackTimer;
             SetState(RobotState.R_Idle);

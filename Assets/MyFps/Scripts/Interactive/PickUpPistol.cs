@@ -10,11 +10,19 @@ namespace MyFps
 
         public GameObject enemyTrigger;
 
+        public GameObject ammoBox;
+        public GameObject ammoUI;
+
         protected override void DoAction()
         {
             realPistol.SetActive(true);
             arrow.SetActive(false);
+
+            ammoBox.SetActive(true);
+            ammoUI.SetActive(true);
+
             enemyTrigger.SetActive(true);
+
             Destroy(gameObject);
         }
     }
