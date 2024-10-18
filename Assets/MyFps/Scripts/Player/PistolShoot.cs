@@ -44,6 +44,9 @@ namespace MyFps
         IEnumerator Shoot()
         {
             isFire = true;
+            //Vector3 screenPoint = Camera.main.WorldToScreenPoint(firPoint.position);
+            //Ray ray = Camera.main.ScreenPointToRay(screenPoint);
+
             //내앞에 100안에 적이 있으면 적에게 데미지를 준다
             float maxDistance = 100f;
             RaycastHit hit;
@@ -56,6 +59,7 @@ namespace MyFps
 
                 //임팩트 효과
                 GameObject effGo = Instantiate(hitImpactPrefab, hit.point, Quaternion.LookRotation(hit.normal));
+                //GameObject effGo = Instantiate(hitImpactPrefab, hit.point, Quaternion.LookRotation(firPoint.TransformDirection(Vector3.forward)));
                 Destroy(effGo, 2f);
                 if (hit.rigidbody != null)
                 {

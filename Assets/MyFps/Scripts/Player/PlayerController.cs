@@ -67,9 +67,8 @@ namespace MyFps
             {
                 hurt03.Play();
             }
-            yield return new WaitForSeconds(1.0f);
+            yield return new WaitForSeconds(1f);
             damageFlash.SetActive(false);  
         }
     }
-
 }

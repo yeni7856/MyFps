@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static Unity.Burst.Intrinsics.X86;
 
 namespace MyFps
 {
@@ -9,7 +10,10 @@ namespace MyFps
         #region
         public GameObject theDoor;      //문
         public AudioSource doorBang;    //문 열기 사운드
-        public AudioSource jumpScare;   //적 등장 사운드
+
+        public AudioSource bgm01;   //메인씬 1 배경음
+        public AudioSource bgm02;   //적 등장 사운드
+
         public GameObject theRobot;     //적
         #endregion
 
@@ -24,12 +28,15 @@ namespace MyFps
             theDoor.GetComponent<BoxCollider>().enabled = false;
 
             //문 사운드
+            bgm01.Stop();
             doorBang.Play();
+
             //Enemy 활성화
             theRobot.SetActive(true);
-            yield return new WaitForSeconds(1f);
+            yield return new WaitForSeconds(1f); //1초후에
+
             //Enemy 등장 사운드
-            jumpScare.Play();
+            bgm02.Play();
 
             //Enemy 타겟을 향해 걷기
             RobotController robot = theRobot.GetComponent<RobotController>();
@@ -39,7 +46,7 @@ namespace MyFps
             }
 
            //트리거 킬
-            Destroy(this.gameObject);
+            Destroy(gameObject);
         }
     }
 }

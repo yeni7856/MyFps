@@ -1,7 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting.Antlr3.Runtime;
 using UnityEngine;
 
 namespace MyFps
@@ -27,6 +23,7 @@ namespace MyFps
             colliderDoor.enabled = false;
             audioSource.Play();
         }
+       
     }
 
 }

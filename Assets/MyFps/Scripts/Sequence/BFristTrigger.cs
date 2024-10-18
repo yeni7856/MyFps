@@ -19,27 +19,20 @@ namespace MyFps
         [SerializeField]
         private string sequence = "Looks like a weapon on that table.";
 
-        // Start is called before the first frame update
-        void Start()
-        {
-           
-        }
+        public AudioSource line03;
 
-        // Update is called once per frame
-        void Update()
-        {
         
-        }
         private void OnTriggerEnter(Collider other)
         {
             StartCoroutine(ArrowDelay());
         }
         IEnumerator ArrowDelay()
         {
-            Player.SetActive(false);
+            Player.GetComponent<FirstPersonController>().enabled = false;
 
             textBox.gameObject.SetActive(true);
             textBox.text = sequence;
+            line03.Play();
 
             yield return new WaitForSeconds(2f);
 
@@ -50,8 +43,11 @@ namespace MyFps
             textBox.text = "";
             textBox.gameObject.SetActive(false);
            
-            Player.SetActive(true);
-            transform.GetComponent<BoxCollider>().enabled = false;   
+            Player.GetComponent<FirstPersonController>().enabled = true;
+            //transform.GetComponent<BoxCollider>().enabled = false;
+
+            //트리거킬
+            Destroy(gameObject);
         }
     }
 

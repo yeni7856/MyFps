@@ -38,6 +38,9 @@ namespace MyFps
         [SerializeField] private float attackDmg = 5f;      //공격 데미지
         [SerializeField] private float attackTimer = 2f;      //공격 속도
         private float count = 0f;
+
+        public AudioSource bgm01;   //메인씬 1 배경음
+        public AudioSource bgm02;   //적 등장 사운드
         #endregion
 
         private void Start()
@@ -133,11 +136,15 @@ namespace MyFps
         {
             isDeath = true;
             Debug.Log("Robot Death!!");
-            //currentHp = 0;
             SetState(RobotState.R_Death);
+
+            //배경음 변경
+            bgm01.Play();   
+            bgm02.Stop();
 
             //충돌체 제거
             transform.GetComponent<BoxCollider>().enabled = false;
+            Destroy(gameObject,3f);
         }
     }
 }

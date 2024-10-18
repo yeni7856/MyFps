@@ -10,6 +10,11 @@ namespace MyFps
         [SerializeField] private float toTarget;        //거리 숫자 보기
         #endregion
 
+        private void Start()
+        {
+            //초기화
+            //distanceFromTarget = Mathf.Infinity;
+        }
         void Update()
         {
             toTarget = distanceFromTarget;
@@ -30,7 +35,7 @@ namespace MyFps
             bool isHit = Physics.Raycast(transform.position, transform.TransformDirection(Vector3.forward), out hit);
             if (isHit)
             {
-                Gizmos.DrawLine(transform.position, transform.forward * hit.distance);
+                Gizmos.DrawLine(transform.position, transform.position + transform.forward * hit.distance);
             }
             else
             {
@@ -38,5 +43,4 @@ namespace MyFps
             }
         }
     }
-
 }
