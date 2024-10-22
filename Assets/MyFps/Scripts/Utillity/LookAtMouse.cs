@@ -12,13 +12,13 @@ namespace MyFps
 
         private void Update()
         {
-            worldPosition = RayToWorld();
+            worldPosition = ScreenToWorld();
             transform.LookAt(worldPosition);
         }
         Vector3 ScreenToWorld()
         {
             Vector3 mousePos = Input.mousePosition;
-            mousePos.z = Camera.main.farClipPlane;
+            mousePos.z = 3f;
             Vector3 worldPos = Camera.main.ScreenToWorldPoint(mousePos);    
             return worldPos;
         }
