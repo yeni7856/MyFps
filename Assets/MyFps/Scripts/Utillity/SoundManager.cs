@@ -94,7 +94,7 @@ namespace MyFps
                 return;
             }
             //배경음 스탑
-            Stop(bgmSound);
+            StopBgm();
 
             Sound sound = null;
 
@@ -118,6 +118,10 @@ namespace MyFps
             {
                 Debug.Log($"Available Sound: {s.name}");
             }
+        }
+        public void StopBgm()
+        {
+            Stop(bgmSound);
         }
     }
 }
