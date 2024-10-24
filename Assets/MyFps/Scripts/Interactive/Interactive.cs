@@ -14,6 +14,9 @@ namespace MyFps
         public TextMeshProUGUI actionTextUI;
         [SerializeField] private string actionText = "Action Text";
         public GameObject extraCross;
+
+        //트루면 인터랙티브 안됨 기능 정지
+        protected bool unInteractive = false;
         #endregion
 
         private void Update()
@@ -22,7 +25,7 @@ namespace MyFps
         }
         private void OnMouseOver()
         {
-            if (theDistance <= 2f)
+            if (theDistance <= 2f && !unInteractive)
             {
                 //PlayerCasting.distanceFromTarget
                 ShowActionUI();
