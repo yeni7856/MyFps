@@ -10,6 +10,7 @@ namespace MyFps
     {
         ROOM01_KEY,
         ROOM02_KEY,
+        LEFTEYE_KEY,
         MAX_KEY                             //퍼즐 아이탬 갯수
     }
 
