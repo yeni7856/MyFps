@@ -24,10 +24,12 @@ namespace MyFps
         protected override void DoAction()
         {
             // 현재 게임 오브젝트가 활성화된 상태인지 확인하고 코루틴을 실행
+            // 오브젝트 일시적으로 활성화
+            gameObject.SetActive(true);
             StartCoroutine(GainPuzzleItem());
             Debug.Log("DoAction이 호출되었습니다.");
         }
-        IEnumerator GainPuzzleItem()
+        protected IEnumerator GainPuzzleItem()
         {
             PlayerStats.Instance.AcquireItme(puzzleKey);
             //UI 연출
