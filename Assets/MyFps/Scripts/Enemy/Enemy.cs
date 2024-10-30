@@ -42,6 +42,15 @@ namespace MyFps
         public Transform[] wayPoints;
         private int nowWayPoint = 0;
         private Vector3 startPosition;  //시작위치
+
+        //적 감지
+        private bool isAiming = false;
+        public bool IsAiming
+        {
+            get { return isAiming; }
+            set { isAiming = value; }
+        }
+        [SerializeField] private float detectDistance = 15f;
         #endregion
 
         void Start ()
@@ -71,10 +80,23 @@ namespace MyFps
             if (isDeath) return;
             //타겟 지정
             float distance = Vector3.Distance(thePlayer.transform.position, transform.position);
+            if(detectDistance > 0)
+            {
+                IsAiming = distance <= detectDistance; //거리가 작거나 같으면 
+            }
+
             if (distance <= attackRange)
             {
                 SetState(EnemyState.E_Attack);
             }
+            else if (detectDistance > 0)            //벗어나면 
+            {
+                if(IsAiming)       //거리안에 들어온것 
+                {
+                    SetState(EnemyState.E_Chase);
+                }
+            }
+
             switch (currentState)
             {
                 case EnemyState.E_Idel:
@@ -103,6 +125,11 @@ namespace MyFps
                 case EnemyState.E_Death:
                     break;
                 case EnemyState.E_Chase:
+                    if(detectDistance > 0 && !IsAiming)
+                    {
+                        GoStartPoint();
+                        return;
+                    }
                     agent.SetDestination(thePlayer.position);   //플레이어 위치 업데이트
                     break;
             }
@@ -111,6 +138,7 @@ namespace MyFps
         //적의 상태 변경
         public void SetState(EnemyState newstate)
         {
+            if (isDeath) return;
             //현재 상태 체크
             if (currentState == newstate) return;
 
@@ -156,14 +184,14 @@ namespace MyFps
         }
         void Die()
         {
+            SetState(EnemyState.E_Death);
             isDeath = true;
             Debug.Log("Enemy Death!!");
-            SetState(EnemyState.E_Death);
-
             //충돌체 제거
             transform.GetComponent<BoxCollider>().enabled = false;
             Destroy(gameObject, 2f);
         }
+
         //다음 목표 지점으로 이동
         void GoNextPoint()
         {
@@ -174,6 +202,17 @@ namespace MyFps
             }
             agent.SetDestination(wayPoints[nowWayPoint].position);
         }
+        public void GoStartPoint()
+        {
+            if (isDeath) return;
+            SetState(EnemyState.E_Walk);
+            //nowWayPoint = 0;
+            agent.SetDestination(startPosition);
+        }
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.red;
+            Gizmos.DrawWireSphere(transform.position, detectDistance);
+        }
     }
-
 }
