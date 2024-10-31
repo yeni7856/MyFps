@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Audio;
 
 
 //오디오를 관리하는 클래스
@@ -16,11 +16,15 @@ namespace MyFps
         {
             get { return bgmSound; }
         }
+        public AudioMixer audioMixer;
         #endregion
 
         protected override void Awake()
         {
             base.Awake(); //싱글톤 구현부
+
+            //AudioMixer//오디오 믹서 그룹을 배열을해줌
+            AudioMixerGroup[] audioMixerGroups = audioMixer.FindMatchingGroups("Master");
 
             //오디오 매니저 초기화
             foreach (var sound in sounds)
@@ -31,6 +35,16 @@ namespace MyFps
                 sound.audioSource.volume = sound.volume;
                 sound.audioSource.pitch = sound.pitch;
                 sound.audioSource.loop = sound.loop;
+
+                if (sound.loop)
+                {
+                    sound.audioSource.outputAudioMixerGroup = audioMixerGroups[1]; //Bgm 배열1
+                }
+                else
+                {
+                    sound.audioSource.outputAudioMixerGroup = audioMixerGroups[2];//Sfx 배열 2
+                }
+                
                 Debug.Log($"Loaded sound: {sound.name}");  // 사운드 이름 출력
             }
         }
