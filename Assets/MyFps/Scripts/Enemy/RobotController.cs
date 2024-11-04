@@ -48,8 +48,8 @@ namespace MyFps
             Animator = GetComponent<Animator>();
 
             //초기화
-            isDeath = false;
             currentHp = maxHp;
+            isDeath = false;
             count = attackTimer;
             SetState(RobotState.R_Idle);
         }
@@ -80,8 +80,8 @@ namespace MyFps
                         SetState(RobotState.R_Walk);
                     }
                     break;
-                case RobotState.R_Death:
-                    break;
+                /*case RobotState.R_Death:
+                    break;*/
             }
         }
         //공격 2초마다
@@ -100,10 +100,10 @@ namespace MyFps
         void Attack()
         {
             Debug.Log("플레이어한테 공격");
-            PlayerController player = thePlayer.GetComponent<PlayerController>();
-            if (player != null)
+            IDamageable damageable = thePlayer.GetComponent<IDamageable>();
+            if (damageable != null)
             {
-                player.TakeDmg(attackDmg);
+                damageable.TakeDamage(attackDmg);
             }
         }
 
@@ -122,9 +122,9 @@ namespace MyFps
             //상태 변경에 따른 구현 내용 
             Animator.SetInteger("RobotState", (int)newstate);
         }
-        public void TakeDamage(float dmg)
+        public void TakeDamage(float damage)
         {
-            currentHp -= dmg;
+            currentHp -= damage;
             Debug.Log(currentHp);
 
             if(currentHp <= 0 && !isDeath)

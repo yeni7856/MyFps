@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace MyFps
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, IDamageable
     {
         #region Variables
         //체력
@@ -38,7 +38,7 @@ namespace MyFps
                 realPistol.SetActive(true);
             }
         }
-        public void TakeDmg(float dmg)
+        /*public void TakeDmg(float dmg)
         {
             if (isDeath) return;
             currentHp -= dmg;
@@ -47,7 +47,21 @@ namespace MyFps
             //데미지 효과
             StartCoroutine(DamageEffect());
 
-            if(currentHp <= 0 && !isDeath)
+            if (currentHp <= 0 && !isDeath)
+            {
+                Die();
+            }
+        }*/
+        public void TakeDamage(float damage)
+        {
+            //if (isDeath) return;
+            currentHp -= damage;
+            Debug.Log($"player : {currentHp}");
+
+            //데미지 효과
+            StartCoroutine(DamageEffect());
+
+            if (currentHp <= 0 && !isDeath)
             {
                 Die();
             }
@@ -82,5 +96,7 @@ namespace MyFps
             yield return new WaitForSeconds(1f);
             damageFlash.SetActive(false);  
         }
+
+        
     }
 }

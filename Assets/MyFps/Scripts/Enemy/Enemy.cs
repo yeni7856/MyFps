@@ -8,7 +8,7 @@ namespace MyFps
 {
     public enum EnemyState
     {
-        E_Idel,                 
+        E_Idle,                 
         E_Walk,             //걷기 - 적 디텍팅 하지 못한 경우
         E_Attack,           //스매시 공격
         E_Death,
@@ -71,7 +71,7 @@ namespace MyFps
             }
             else
             {
-                SetState(EnemyState.E_Idel);
+                SetState(EnemyState.E_Idle);
             }
             
         }
@@ -100,7 +100,7 @@ namespace MyFps
 
             switch (currentState)
             {
-                case EnemyState.E_Idel:
+                case EnemyState.E_Idle:
                     break;
                 case EnemyState.E_Walk:
                     //도착 판정
@@ -112,7 +112,7 @@ namespace MyFps
                         }
                         else
                         {
-                            SetState(EnemyState.E_Idel);
+                            SetState(EnemyState.E_Idle);
                         }
                     }
                     break;
@@ -163,7 +163,6 @@ namespace MyFps
             //Agent 초기화 (목표지점 없애기)
             agent.ResetPath();
         }
-
         void Attack()
         {
             Debug.Log("플레이어한테 공격");
@@ -173,9 +172,10 @@ namespace MyFps
                 damageable.TakeDamage(attackDmg);
             }
         }
-        public void TakeDamage(float dmg)
+
+        public void TakeDamage(float damage)
         {
-            currentHp -= dmg;
+            currentHp -= damage;
             Debug.Log(currentHp);
 
             if (currentHp <= 0 && !isDeath)
@@ -187,7 +187,7 @@ namespace MyFps
         {
             SetState(EnemyState.E_Death);
             isDeath = true;
-            Debug.Log("Enemy Death!!");
+            //Debug.Log("Enemy Death!!");
             //충돌체 제거
             transform.GetComponent<BoxCollider>().enabled = false;
             Destroy(gameObject, 2f);

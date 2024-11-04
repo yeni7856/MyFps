@@ -34,7 +34,7 @@ namespace MyFps
         private void Update()
         {
             //도착판정
-            if(dollyCart.m_Position > wayPotinIndex && isWaypoints[wayPotinIndex] == false)
+            if(dollyCart.m_Position >= wayPotinIndex && isWaypoints[wayPotinIndex] == false)
             {
                 //연출
                 if(wayPotinIndex == isWaypoints.Length - 1)
@@ -92,10 +92,13 @@ namespace MyFps
                     introUI.SetActive(false);
                     break;
                 case 3:
-                    shedLight.SetActive(true);
                     break ;
             }
-            yield return new WaitForSeconds(3f);
+            if (nowIndex == 3)
+            {
+                shedLight.SetActive(true);
+                yield return new WaitForSeconds(1f);
+            }
             //출발
             dollyCart.m_Speed = 0.08f;
         }

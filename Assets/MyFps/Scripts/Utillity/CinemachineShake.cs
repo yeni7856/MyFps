@@ -10,7 +10,7 @@ public class CinemachineShake : Singleton<CinemachineShake>
     private CinemachineVirtualCamera cvCamera;
     private CinemachineBasicMultiChannelPerlin channelPerlin;
 
-    [SerializeField] private float amplitued = 1f;  //흔들림의 ㅣ크기
+    //[SerializeField] private float amplitued = 1f;  //흔들림의 ㅣ크기
     [SerializeField] private float frequency = 1f;  //흔들림의 속도
     private bool isShake = false;                        //흔들고있는지 아닌지   
     #endregion
@@ -19,7 +19,7 @@ public class CinemachineShake : Singleton<CinemachineShake>
     {
         base.Awake();
         cvCamera = this.GetComponent<CinemachineVirtualCamera>();
-        channelPerlin = cvCamera.GetComponent<CinemachineBasicMultiChannelPerlin>();
+        channelPerlin = cvCamera.GetCinemachineComponent<CinemachineBasicMultiChannelPerlin>();
     }
     private void Update()
     {
