@@ -23,11 +23,20 @@ namespace MyFps
         //게임오버 씬
         public SceneFader fader;
         [SerializeField] private string loadToScene = "GameOver";
+
+        //무기 
+        public GameObject realPistol;
         #endregion
 
         void Start ()
         {
+            //초기화
             currentHp = maxHp;
+            //무기획득
+            if (PlayerStats.Instance.HasGun)
+            {
+                realPistol.SetActive(true);
+            }
         }
         public void TakeDmg(float dmg)
         {
@@ -53,6 +62,9 @@ namespace MyFps
         IEnumerator DamageEffect()
         {
             damageFlash.SetActive(true);
+
+            //카매라 흔들림 
+            CinemachineShake.Instance.ShakeCamera(1f, 1f);
 
             int randNumber = Random.Range(1, 4);
             if(randNumber == 1 )

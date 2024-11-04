@@ -10,24 +10,36 @@ namespace MyFps
     {
         #region Variables
         public SceneFader fader;
-        [SerializeField] private string loadScene = "MainScene01";
+        [SerializeField] private string loadScene = "IntroScene";
 
         private SoundManager soundManager;
         public GameObject mainMenuUI;
         public GameObject optionUI;
         public GameObject creditUI;
+        public GameObject loadGame;
 
         //Audio
         public AudioMixer audioMixer;
         public Slider bgmSlider;
         public Slider sfxSlider;
+
+        //저장되어 있는 씬번호
+        private int sceneNumber;
         #endregion
 
         // Start is called before the first frame update
         void Start()
         {
-            //저장데이터, 저장된, 옵션값 로드 
-            LoadOptions();
+            //게임 데이터 초기화
+            InitGameData();
+
+            //sceneNumber = PlayerPrefs.GetInt("PlayScene", 0); //저장값이 없을때.
+            Debug.Log($"저장된 {PlayerStats.Instance.SceneNumber}");
+            //저장된 씬이 있으면
+            if(PlayerStats.Instance.SceneNumber > 1)
+            {
+                loadGame.SetActive(true);
+            }
 
             //씬페이더
             fader.FromFade();
@@ -37,9 +49,17 @@ namespace MyFps
 
             //Bgm 플레이
             //soundManager.PlayBgm("MenuBgm");
+        }
+        void InitGameData()
+        {
+            //게임 설정값, 저장데이터, 저장된, 옵션값 로드 
+            LoadOptions();
+
+            //게임플레이 데이터 로드
+            PlayData playData = SaveLoad.LoadData();
+            PlayerStats.Instance.PlayerStatInit(playData); 
 
         }
-
         // Update is called once per frame
         void Update()
         {
@@ -48,16 +68,21 @@ namespace MyFps
                 HideCredits();
             }*/
         }
+
         public void NewGame()
         {
             soundManager.Stop(soundManager.BgmSound);
             soundManager.Play("MenuButton");
+
             fader.FadeTo(loadScene);
-            Debug.Log("NewGame");
         }
         public void LoadGame()
         {
-            Debug.Log("LoadGame");
+            //Debug.Log($" GoTo LoadGame {sceneNumber}");
+            soundManager.Stop(soundManager.BgmSound);
+            soundManager.Play("MenuButton");
+
+            fader.FadeTo(PlayerStats.Instance.SceneNumber);
         }
         public void Options()
         {

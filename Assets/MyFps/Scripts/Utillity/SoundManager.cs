@@ -7,7 +7,7 @@ using UnityEngine.Audio;
 //오디오를 관리하는 클래스
 namespace MyFps
 {
-    public class SoundManager : PersistentSingleton<SoundManager>
+    public class SoundManager :Singleton<SoundManager>
     {
         #region Variables
         public Sound[] sounds;

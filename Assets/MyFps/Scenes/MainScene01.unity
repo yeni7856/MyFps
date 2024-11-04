@@ -15698,6 +15698,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1080968884}
   - component: {fileID: 1080968885}
+  - component: {fileID: 1080968886}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -15739,6 +15740,18 @@ MonoBehaviour:
   sequence02: ...Where am I
   line01: {fileID: 2073923829}
   line02: {fileID: 800278779}
+--- !u!114 &1080968886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1080968882}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15dd0391ebe2a14299ae48704f1b685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1100120619
 GameObject:
   m_ObjectHideFlags: 0
@@ -18528,7 +18541,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pauseUI: {fileID: 552780717}
   fader: {fileID: 1730014886}
-  loadToScene: MainMeun
+  loadToScene: MainMenu
 --- !u!114 &1730014886 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 3923349147410824963, guid: 04277e26007ed2649a44b639bdd39d0a,
@@ -21064,10 +21077,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
-  m_PivotOffset: {x: 0, y: 0, z: 1}
-  m_AmplitudeGain: 0.5
-  m_FrequencyGain: 0.3
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
+  m_PivotOffset: {x: 0, y: 0, z: 0}
+  m_AmplitudeGain: 0
+  m_FrequencyGain: 0
   mNoiseOffsets: {x: -451.37964, y: 684.7062, z: 648.0488}
 --- !u!114 &689001443531568659
 MonoBehaviour:
@@ -21130,6 +21143,7 @@ GameObject:
   m_Component:
   - component: {fileID: 689001444125607891}
   - component: {fileID: 689001444125607890}
+  - component: {fileID: 689001444125607892}
   m_Layer: 0
   m_Name: PlayerFollowCamera
   m_TagString: Untagged
@@ -21192,6 +21206,20 @@ Transform:
   - {fileID: 689001443531568663}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &689001444125607892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 689001444125607468}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528ac972513f58e449019e1aa3f2bc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitued: 1
+  frequency: 1
 --- !u!1 &709947648486109999
 GameObject:
   m_ObjectHideFlags: 0
@@ -38924,6 +38952,7 @@ MonoBehaviour:
   hurt03: {fileID: 679529905}
   fader: {fileID: 1730014886}
   loadToScene: GameOver
+  realPistol: {fileID: 900980598}
 --- !u!4 &7601301259281969316
 Transform:
   m_ObjectHideFlags: 0

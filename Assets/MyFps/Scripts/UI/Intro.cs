@@ -44,7 +44,7 @@ namespace MyFps
                 }
                 else
                 {
-                    StartCoroutine(StartIntro());
+                    StartCoroutine(StayIntro());
                 }
             }
             //인트로 스킵 esc키 누르면 인트로 강제 종료하고 씬이동

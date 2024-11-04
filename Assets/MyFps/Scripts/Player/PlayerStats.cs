@@ -19,23 +19,64 @@ namespace MyFps
     public class PlayerStats : PersistentSingleton<PlayerStats> //제네릭
     {
         #region Variables
-        [SerializeField] private int ammoCount;
+        //SceneNumber 저장된
+        private int sceneNumber;
+        public int SceneNumber
+        {
+            get {  return sceneNumber; }
+            set { sceneNumber = value; }    
+        }
+        //현재 SceneNumber 
+        private int nowSceneNumber;
+        public int NowSceneNumber
+        {
+            get { return nowSceneNumber; }
+            set { nowSceneNumber = value; }
+        }
 
+        //탄환갯수
+        [SerializeField] private int ammoCount;
         public int AmmoCount
         {
             get { return ammoCount; }
             set { ammoCount = value; }
         }
 
+        //무기 소지 여부
+        private bool hasGun;
+        public bool HasGun
+        {
+            get { return hasGun; }
+            set { hasGun = value; }
+        }
+
         //게임 퍼즐 아이템 키
         private bool[] puzzleKeys;
         #endregion
+
         private void Start()
         {
-            //속성값/Data 초기화
-            AmmoCount = 0;
+            //초기화 
+            //AmmoCount = 0;
             //초기화 
             puzzleKeys = new bool[(int)PuzzleKey.MAX_KEY];
+        }
+
+        public void PlayerStatInit(PlayData playData)
+        {
+            if(playData != null)
+            {
+                SceneNumber = playData.scenNumber;
+                AmmoCount = playData.ammoCount;
+                hasGun = playData.hasGun;
+
+            }
+            else //저장된 데이터가 없을때
+            {
+                SceneNumber = 0;
+                AmmoCount = 0;
+                hasGun = false;
+            }
         }
 
         public void AddAmmoCount(int ammo)
@@ -63,5 +104,11 @@ namespace MyFps
         {
             return puzzleKeys[(int)key];
         }
+        //무기 소지
+        public void SetHasGun(bool value)
+        {
+            HasGun = value; 
+        }
+        
     }
 }

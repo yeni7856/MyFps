@@ -687,6 +687,7 @@ GameObject:
   m_Component:
   - component: {fileID: 83744703}
   - component: {fileID: 83744702}
+  - component: {fileID: 83744704}
   m_Layer: 0
   m_Name: PlayerFollowCamera
   m_TagString: Untagged
@@ -749,6 +750,20 @@ Transform:
   - {fileID: 897538651}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &83744704
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 83744701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 528ac972513f58e449019e1aa3f2bc95, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  amplitued: 1
+  frequency: 1
 --- !u!1 &83758400
 GameObject:
   m_ObjectHideFlags: 0
@@ -2109,6 +2124,7 @@ MonoBehaviour:
   hurt03: {fileID: 1691374551}
   fader: {fileID: 0}
   loadToScene: GameOver
+  realPistol: {fileID: 0}
 --- !u!114 &286403844
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19789,7 +19805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 68bb026fafb42b14791938953eaace77, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_NoiseProfile: {fileID: 11400000, guid: 46965f9cbaf525742a6da4c2172a99cd, type: 2}
+  m_NoiseProfile: {fileID: 11400000, guid: 69ce8388f6785dd4c8c39915efece2f4, type: 2}
   m_PivotOffset: {x: 0, y: 0, z: 1}
   m_AmplitudeGain: 0.5
   m_FrequencyGain: 0.3
@@ -38407,6 +38423,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8468927666645440043, guid: fd67028f9a30093448fea8256d770c26,
         type: 3}
+      propertyPath: audioMixer
+      value: 
+      objectReference: {fileID: 24100000, guid: f50737006129d534a867b798667a99c6,
+        type: 2}
+    - target: {fileID: 8468927666645440043, guid: fd67028f9a30093448fea8256d770c26,
+        type: 3}
       propertyPath: sounds.Array.size
       value: 7
       objectReference: {fileID: 0}
@@ -39653,6 +39675,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1862980282}
   - component: {fileID: 1862980283}
+  - component: {fileID: 1862980284}
   m_Layer: 0
   m_Name: SceneManager
   m_TagString: Untagged
@@ -39690,6 +39713,18 @@ MonoBehaviour:
   fader: {fileID: 2012000777}
   Player: {fileID: 286403842}
   textBox: {fileID: 837052979}
+--- !u!114 &1862980284
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862980281}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f15dd0391ebe2a14299ae48704f1b685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1863481066 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2809422188811231670, guid: b107be7b6a2ecce49b77e6ebd4dd2089,
@@ -41502,13 +41537,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2015601956}
+  - component: {fileID: 2015601957}
   m_Layer: 5
   m_Name: AmmoUI
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2015601956
 RectTransform:
   m_ObjectHideFlags: 0
@@ -41529,6 +41565,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2015601957
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2015601955}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa9e437efdcef1c4ba8eebc83d856ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ammoUI: {fileID: 2015601955}
 --- !u!1 &2028349360
 GameObject:
   m_ObjectHideFlags: 0
