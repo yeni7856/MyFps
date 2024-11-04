@@ -2123,7 +2123,7 @@ MonoBehaviour:
   hurt03: {fileID: 1691374551}
   fader: {fileID: 2012000777}
   loadToScene: GameOver
-  realPistol: {fileID: 0}
+  realPistol: {fileID: 642090568}
 --- !u!114 &286403844
 MonoBehaviour:
   m_ObjectHideFlags: 0
