@@ -23,8 +23,8 @@ namespace MyFps
         }
         public void Retry()
         {
-            int sceneNumber = PlayerStats.Instance.SceneNumber;
-           fader.FadeTo(sceneNumber);
+            
+           fader.FadeTo(PlayerStats.Instance.NowSceneNumber);
         }
         public void Menu()
         {
